@@ -91,19 +91,21 @@ var RadarChart = {
         if (cfg.roundStrokes) {
             // Circular segments
             for (var j = 0; j < cfg.levels; j++) {
-                var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
                 g.selectAll(".levels")
-                    .data(allAxis)
+                    .data([1])
                     .enter()
                     .append("svg:circle")
                     .attr("class", "circle")
                     .attr("cy", cfg.h / 2)
                     .attr("cx", cfg.w / 2)
-                    .attr("r", ((cfg.w / cfg.levels) * (j + 1)) / 2)
+                    .attr(
+                        "r",
+                        ((cfg.w / cfg.levels) * (cfg.levels - 1 - j + 1)) / 2
+                    )
                     .style("stroke", cfg.levelsColor)
                     .style("stroke-opacity", "1")
                     .style("stroke-width", "0.3px")
-                    .style("fill", "none");
+                    .style("fill", "#fff");
             }
         } else {
             // Circular segments
